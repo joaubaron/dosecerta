@@ -20,9 +20,8 @@
       appId: "3c8c2121-4add-4442-9da5-78dcd8b6a100",
       safari_web_id: "web.onesignal.auto.05fed58c-1a2a-4bf1-97b0-0a5be0dd2565",
       serviceWorkerPath: "OneSignalSDKWorker.js",
-      notifyButton: { enable: false }, // usamos nosso próprio botão
+      notifyButton: { enable: false },
     });
-    // Solicita permissão automaticamente se ainda não decidiu
     OneSignal.Slidedown.promptPush();
   });
 </script>
@@ -39,7 +38,6 @@
   html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden}
   #app{display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto}
 
-  /* HEADER */
   .header{padding:env(safe-area-inset-top,12px) 20px 12px;flex-shrink:0}
   .header-top{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
   .logo{display:flex;align-items:center;gap:10px}
@@ -51,24 +49,20 @@
   .btn-notif svg{width:20px;height:20px;fill:var(--text2)}
   .btn-notif.granted svg{fill:var(--accent)}
 
-  /* NEXT BANNER */
   .next-banner{margin:0 20px 16px;background:linear-gradient(135deg,var(--accent2),var(--accent));border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
   .next-banner.hidden{display:none}
   .next-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.75);margin-bottom:4px}
   .next-name{font-size:16px;font-weight:700;color:white}
   .next-time{font-size:28px;font-weight:800;color:white;letter-spacing:-1px}
 
-  /* TABS */
   .tabs{display:flex;padding:0 20px;gap:8px;margin-bottom:16px;flex-shrink:0}
   .tab{flex:1;padding:10px;border:none;border-radius:var(--pill);font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s}
   .tab.active{background:var(--accent);color:white}
   .tab:not(.active){background:var(--surface);color:var(--text2)}
 
-  /* CONTENT */
   .content{flex:1;overflow-y:auto;padding:0 20px;padding-bottom:100px;-webkit-overflow-scrolling:touch}
   .content::-webkit-scrollbar{display:none}
 
-  /* MED CARDS */
   .med-card{background:var(--surface);border-radius:var(--radius);padding:16px;margin-bottom:12px;position:relative;overflow:hidden}
   .med-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px}
   .med-card.status-ok::before{background:var(--accent)}
@@ -92,20 +86,17 @@
   .btn-edit{background:var(--surface2);color:var(--text2);border:none;border-radius:var(--pill);padding:9px 16px;font-size:13px;cursor:pointer}
   .btn-del{background:rgba(224,85,85,0.15);color:var(--danger);border:none;border-radius:var(--pill);padding:9px 16px;font-size:13px;cursor:pointer}
 
-  /* EMPTY */
   .empty{text-align:center;padding:40px 20px;color:var(--text2)}
   .empty-icon{font-size:48px;margin-bottom:16px}
   .empty h3{font-size:18px;color:var(--text);margin-bottom:8px}
   .empty p{font-size:14px;line-height:1.6}
 
-  /* FAB */
   .fab{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));right:20px;
     background:var(--accent);color:white;border:none;border-radius:var(--pill);
     padding:16px 24px;font-size:16px;font-weight:700;cursor:pointer;
     display:flex;align-items:center;gap:8px;
     box-shadow:0 4px 20px rgba(0,200,150,0.35);z-index:100}
 
-  /* MODAL */
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;
     display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity 0.25s}
   .modal-overlay.open{opacity:1;pointer-events:all}
@@ -135,7 +126,6 @@
   .btn-save{flex:1;background:var(--accent);color:white;border:none;border-radius:var(--pill);padding:16px;font-size:16px;font-weight:700;cursor:pointer}
   .btn-cancel{background:var(--surface2);color:var(--text2);border:none;border-radius:var(--pill);padding:16px 20px;font-size:16px;cursor:pointer}
 
-  /* HISTORY */
   .hist-date{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin:16px 0 8px}
   .hist-item{background:var(--surface);border-radius:12px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
   .hist-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;background:var(--accent)}
@@ -144,7 +134,6 @@
   .hist-detail{font-size:13px;color:var(--text2);margin-top:2px}
   .hist-time{font-size:13px;color:var(--text3)}
 
-  /* NOTIF BANNER */
   .notif-req{background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);
     border-radius:12px;padding:12px 16px;margin-bottom:16px;
     display:flex;align-items:center;gap:12px;cursor:pointer}
@@ -152,7 +141,6 @@
   .notif-req svg{width:20px;height:20px;fill:var(--warn);flex-shrink:0}
   .notif-req p{font-size:13px;color:var(--warn);line-height:1.4}
 
-  /* CONFIRM MODAL */
   .confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:300;
     display:flex;align-items:center;justify-content:center;padding:24px;
     opacity:0;pointer-events:none;transition:opacity 0.2s}
@@ -168,7 +156,6 @@
   .confirm-no{background:var(--surface2);color:var(--text2)}
   .confirm-yes{background:var(--danger);color:white}
 
-  /* NOTIF MODAL */
   .notif-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:300;
     display:flex;align-items:flex-end;padding:0;
     opacity:0;pointer-events:none;transition:opacity 0.2s}
@@ -184,7 +171,6 @@
   .btn-allow{background:var(--accent);color:white;border:none;border-radius:var(--pill);padding:16px;font-size:16px;font-weight:700;cursor:pointer}
   .btn-later{background:var(--surface2);color:var(--text2);border:none;border-radius:var(--pill);padding:14px;font-size:15px;cursor:pointer}
 
-  /* NOTIF BLOQUEADA */
   .notif-blocked{background:rgba(224,85,85,0.12);border:1px solid rgba(224,85,85,0.3);
     border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:13px;
     color:var(--danger);line-height:1.5;display:none}
@@ -241,7 +227,6 @@
   </button>
 </div>
 
-<!-- MODAL CONFIRMAR REMOÇÃO -->
 <div class="confirm-overlay" id="confirmOverlay">
   <div class="confirm-box">
     <div class="confirm-icon">🗑️</div>
@@ -254,7 +239,6 @@
   </div>
 </div>
 
-<!-- MODAL NOTIFICAÇÕES -->
 <div class="notif-modal-overlay" id="notifModalOverlay">
   <div class="notif-modal-box">
     <div class="notif-modal-icon">🔔</div>
@@ -268,7 +252,6 @@
   </div>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <span class="modal-handle"></span>
@@ -295,6 +278,9 @@
       <div class="time-add-row">
         <input type="time" id="fTime">
         <button class="btn-add-time" onclick="addTime()">+ Adicionar</button>
+      </div>
+      <div style="font-size: 11px; color: var(--text3); margin-top: 8px;">
+        💡 Dica: Adicione quantos horários quiser para o MESMO remédio
       </div>
     </div>
     <div class="field">
@@ -348,16 +334,13 @@ if('serviceWorker' in navigator){
 function ativarNotif(){
   const perm=Notification.permission;
   if(perm==='granted'){
-    // Já concedido: mostra feedback rápido
     document.getElementById('btnNotif').classList.add('granted');
     return;
   }
   if(perm==='denied'){
-    // Bloqueado: instrui o usuário a desbloquear manualmente
     openNotifModal(true);
     return;
   }
-  // 'default': abre nosso modal explicativo primeiro
   openNotifModal(false);
 }
 
@@ -381,19 +364,15 @@ document.getElementById('notifModalOverlay').addEventListener('click',function(e
 
 async function confirmarNotif(){
   closeNotifModal();
-  // Tenta OneSignal, senão API nativa
   if(window.OneSignal && window.OneSignal.Slidedown){
     try{ await window.OneSignal.Slidedown.promptPush(); }catch(err){}
   }
-  // Sempre também pede pela API nativa (funciona sem OneSignal)
   if(Notification.permission!=='granted'){
     const p=await Notification.requestPermission();
     if(p==='granted'){
       updateNotifBtn();
-      // Dispara notificação de teste
       new Notification('✅ Alertas ativados!',{body:'Você receberá lembretes nos horários cadastrados.',icon:'./icon-192.png'});
     }else{
-      // Bloqueou na segunda tentativa
       setTimeout(()=>openNotifModal(true),300);
     }
   }else{
@@ -413,32 +392,29 @@ function updateNotifBtn(){
   }
 }
 
-// Agenda notificações via OneSignal (In-App scheduling via API REST)
-// Para notificações confiáveis, usamos o OneSignal com o player_id do usuário
-// O SDK cuida de entregar mesmo com app fechado
-function agendarNotificacoesHoje(){
-  if(!window.OneSignal || Notification.permission!=='granted') return;
-  // OneSignal cuida das notificações push via servidor — nada a fazer aqui
-  // As notificações são enviadas via dashboard ou API REST do OneSignal
-  // Para uso pessoal, usamos notificação local como fallback
-  agendarLocais();
+// ── NOTIFICAÇÕES LOCAIS E WHATSAPP ──────────────────────────────
+const notificados=new Set();
+
+// Função que envia lembrete pelo WhatsApp
+function enviarWhatsApp(medName, dose, horario) {
+    const numero = "5547991581967";
+    const mensagem = `💊 *HORA DO REMÉDIO* 💊\n\n${medName} - ${dose}\nHorário: ${horario}\n\n✅ Não esqueca de tomar!`;
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
 }
 
-// Fallback: notificação local via Notification API (quando app está aberto)
-const notificados=new Set();
-function agendarLocais(){
+// Função original de notificação local (guardada)
+const agendarLocaisOriginal = function() {
   if(Notification.permission!=='granted') return;
   const now=new Date();
-  const hhmm=nowHHMM();
   meds.forEach(med=>{
     (med.times||[]).forEach(t=>{
       const key=`${med.id}_${t}_${todayStr()}`;
-      // Dispara se estiver no intervalo de ±2 minutos do horário programado
       if(!takenToday[`${med.id}_${t}`] && !notificados.has(key)){
         const[th,tm]=t.split(':').map(Number);
         const target=new Date(); target.setHours(th,tm,0,0);
         const diffMin=(now-target)/60000;
-        if(diffMin>=-0.5 && diffMin<2){ // janela: de 30s antes até 2min depois
+        if(diffMin>=-0.5 && diffMin<2){
           notificados.add(key);
           new Notification('💊 Hora do remédio!',{
             body:`${med.name} — ${med.dose}`,
@@ -450,6 +426,33 @@ function agendarLocais(){
       }
     });
   });
+};
+
+// Função combinada (notificação local + WhatsApp)
+function agendarLocais() {
+    // Notificação local
+    if(typeof agendarLocaisOriginal === 'function') agendarLocaisOriginal();
+    
+    // WhatsApp
+    if(Notification.permission !== 'granted') return;
+    
+    const now = new Date();
+    meds.forEach(med => {
+        (med.times || []).forEach(t => {
+            const [th, tm] = t.split(':').map(Number);
+            const target = new Date();
+            target.setHours(th, tm, 0, 0);
+            const diffMin = (now - target) / 60000;
+        
+            if(diffMin >= -1 && diffMin <= 5) {
+                const jaEnviado = localStorage.getItem(`whats_${med.id}_${t}_${todayStr()}`);
+                if(!jaEnviado && !takenToday[`${med.id}_${t}`]) {
+                    enviarWhatsApp(med.name, med.dose, t);
+                    localStorage.setItem(`whats_${med.id}_${t}_${todayStr()}`, '1');
+                }
+            }
+        });
+    });
 }
 
 // ── TABS ─────────────────────────────────────────────────────────
@@ -473,7 +476,6 @@ function getTimeStatus(t){
 }
 function getCardStatus(med){
   const times=med.times||[];
-  // Sem horários: verifica se foi marcado hoje de forma geral
   if(!times.length){
     const tomadoHoje=Object.keys(takenToday).some(k=>k.startsWith(`${med.id}_geral`));
     return tomadoHoje?'ok':'none';
@@ -522,8 +524,6 @@ function renderMeds(){
 
 function markNext(id){
   const med=meds.find(m=>m.id===id); if(!med)return;
-  // Com horários: marca o próximo pendente
-  // Sem horários: marca uma dose geral com o horário atual
   const next=(med.times||[]).find(t=>!takenToday[`${id}_${t}`]);
   const chave=next||`geral_${nowHHMM()}`;
   takenToday[`${id}_${chave}`]=new Date().toISOString();
@@ -622,7 +622,6 @@ function addTime(){
 }
 function removeTime(i){tempTimes.splice(i,1);renderTimeTags();}
 
-// Substitua a função saveMed() existente por esta:
 function saveMed(){
   const name = document.getElementById('fName').value.trim();
   const dose = document.getElementById('fDose').value.trim();
@@ -630,20 +629,17 @@ function saveMed(){
   if(!name){ document.getElementById('fName').focus(); return; }
   if(!dose){ document.getElementById('fDose').focus(); return; }
   
-  // Adiciona horário pendente se houver
   const vTime = document.getElementById('fTime').value;
   if(vTime && !tempTimes.includes(vTime)){
     tempTimes.push(vTime);
     tempTimes.sort();
   }
   
-  // VALIDAÇÃO: impede criar remédio sem horário
   if(tempTimes.length === 0){
     alert("Adicione pelo menos um horário antes de salvar.");
     return;
   }
   
-  // VERIFICA DUPLICATA: se já existe remédio com mesmo nome e mesmo horário
   if(!editingId){
     const duplicado = meds.some(med => 
       med.name.toLowerCase() === name.toLowerCase() &&
@@ -655,12 +651,10 @@ function saveMed(){
       return;
     }
     
-    // SUGESTÃO: se encontrar mesmo nome com horários diferentes, pergunta se quer mesclar
     const mesmoNome = meds.filter(med => med.name.toLowerCase() === name.toLowerCase());
     if(mesmoNome.length > 0){
       const todosHorarios = [...new Set([...mesmoNome.flatMap(m => m.times || []), ...tempTimes])].sort();
       if(confirm(`"${name}" já existe com horários: ${mesmoNome[0].times?.join(', ') || 'nenhum'}\n\nDeseja mesclar todos os horários em um único remédio?\n\nNovos horários: ${tempTimes.join(', ')}`)){
-        // Remove os duplicados e mescla
         meds = meds.filter(m => m.name.toLowerCase() !== name.toLowerCase());
         tempTimes = todosHorarios;
       }
@@ -680,7 +674,6 @@ function saveMed(){
   if(editingId){
     meds = meds.map(m => m.id === editingId ? med : m);
   } else {
-    // Remove qualquer outro remédio com mesmo nome (já tratado acima)
     meds = [...meds, med];
   }
   
@@ -692,67 +685,36 @@ function saveMed(){
 // ── CLOCK + TICK ─────────────────────────────────────────────────
 function updateClock(){
   const d=new Date();
-  document.getElementById('clockDisplay').textContent=
-    d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  const relogio = document.getElementById('clockDisplay');
+  if(relogio) {
+    relogio.textContent = d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+  }
 }
+
 function tick(){
-  agendarLocais();
+  if(typeof agendarLocais === 'function') agendarLocais();
+  updateClock();
   renderMeds();
   updateNextBanner();
 }
-function renderAll(){renderMeds();updateNextBanner();updateNotifBtn();if(currentTab==='history')renderHistory();}
 
-// Adicione no final do seu script, antes de fechar a tag </script>
-
-// Função que envia lembrete pelo WhatsApp (abre o app)
-function enviarWhatsApp(medName, dose, horario) {
-    const numero = "5547991581967";
-  
-    const mensagem = `💊 *HORA DO REMÉDIO* 💊\n\n${medName} - ${dose}\nHorário: ${horario}\n\n✅ Não esqueca de tomar!`;
-  
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-  
-    // Tenta abrir o WhatsApp
-    window.open(url, '_blank');
+function renderAll(){
+  renderMeds();
+  updateNextBanner();
+  updateNotifBtn();
+  if(currentTab==='history') renderHistory();
 }
 
-// Modifique a função agendarLocais() para também enviar WhatsApp
-const agendarLocaisOriginal = agendarLocais;
-agendarLocais = function() {
-    // Chama a função original do OneSignal
-    if(typeof agendarLocaisOriginal === 'function') agendarLocaisOriginal();
-  
-    // Adiciona envio por WhatsApp
-    if(Notification.permission !== 'granted') return;
-  
-    const now = new Date();
-    meds.forEach(med => {
-        (med.times || []).forEach(t => {
-            const [th, tm] = t.split(':').map(Number);
-            const target = new Date();
-            target.setHours(th, tm, 0, 0);
-            const diffMin = (now - target) / 60000;
-        
-            // Se está no horário (entre 1 minuto antes e 5 minutos depois)
-            if(diffMin >= -1 && diffMin <= 5) {
-                const jaEnviado = localStorage.getItem(`whats_${med.id}_${t}_${todayStr()}`);
-                if(!jaEnviado && !takenToday[`${med.id}_${t}`]) {
-                    enviarWhatsApp(med.name, med.dose, t);
-                    localStorage.setItem(`whats_${med.id}_${t}_${todayStr()}`, '1');
-                }
-            }
-        });
-    });
-};
-              
 // ── INIT ─────────────────────────────────────────────────────────
 load();
 renderAll();
 updateClock();
-setInterval(updateClock,10000);
-setInterval(tick,30000); // verifica a cada 30s para não perder a janela de alertas
-if(Notification.permission==='default'&&meds.length>0){
-  document.getElementById('notifBanner').classList.remove('hidden');
+setInterval(updateClock, 1000);
+setInterval(tick, 30000);
+
+if(Notification.permission==='default' && meds.length>0){
+  const banner = document.getElementById('notifBanner');
+  if(banner) banner.classList.remove('hidden');
 }
 
 </script>

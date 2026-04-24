@@ -631,6 +631,91 @@ setTimeout(() => {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
   }
 }, 0);
+
+// ==================== COMUNICAÇÃO COM SERVICE WORKER ====================
+
+async function enviarMedsParaServiceWorker() {
+  if (!navigator.serviceWorker?.controller) return;
+  
+  // Envia dados atualizados sempre que mudar
+  const dados = {
+    meds: meds.map(({ id, name, dose, times }) => ({ id, name, dose, times })),
+    takenToday: takenToday
+  };
+  
+  navigator.serviceWorker.controller.postMessage({
+    type: 'UPDATE_MEDS_DATA',
+    data: dados
+  });
+  
+  // Também solicita reagendamento dos alarmes
+  navigator.serviceWorker.controller.postMessage({ type: 'SCHEDULE_ALARMS' });
+}
+
+// Sobrescrever funções de save para enviar ao SW
+const originalSave = save;
+save = function() {
+  originalSave();
+  enviarMedsParaServiceWorker();
+};
+
+// Adicionar listener para responder ao SW quando ele pedir dados
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.addEventListener('message', async e => {
+    if (e.data?.type === 'GET_MEDS_DATA') {
+      if (e.ports && e.ports[0]) {
+        e.ports[0].postMessage({
+          meds: meds.map(({ id, name, dose, times }) => ({ id, name, dose, times })),
+          takenToday: takenToday
+        });
+      }
+    }
+  });
+}
+
+// Forçar verificação ao reabrir o app
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && navigator.serviceWorker?.controller) {
+    navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
+  }
+});
+
+// ==================== INIT SIMPLIFICADO ====================
+(async function init() {
+  load();
+  await registrarServiceWorker();
+  renderAll();
+  updateClock();
+  setInterval(updateClock, 10000);
+  
+  // Agendar via SW imediatamente
+  if (navigator.serviceWorker?.controller) {
+    enviarMedsParaServiceWorker();
+    navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
+  }
+  
+  // Verificação periódica a cada 15 minutos (fallback)
+  setInterval(() => {
+    if (navigator.serviceWorker?.controller) {
+      navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
+    }
+  }, 15 * 60 * 1000);
+  
+  // Permissão de notificação
+  if (Notification.permission === 'granted') {
+    document.getElementById('btnNotif').classList.add('granted');
+    await solicitarPermissaoPush(); // apenas para manter compatibilidade
+  }
+})();
+
+// Substituir função agendarNotificacoes para não usar mais setTimeout
+agendarNotificacoes = function() {
+  // Agora delegamos ao Service Worker
+  if (navigator.serviceWorker?.controller) {
+    enviarMedsParaServiceWorker();
+  }
+};
+ 
 </script>
 </body>
 </html>

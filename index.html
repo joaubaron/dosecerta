@@ -149,10 +149,27 @@ function save() {
   localStorage.setItem('dosecerta_hist', JSON.stringify(history.slice(0, 500)));
   localStorage.setItem('dosecerta_taken', JSON.stringify(takenToday));
 }
+ 
 function cleanTakenToday() {
   const today = new Date().toLocaleDateString('pt-BR');
   if (takenToday._date !== today) { takenToday = { _date: today }; save(); }
+  
+  // Limpa histórico com mais de 30 dias
+  limparHistoricoAntigo();
 }
+
+function limparHistoricoAntigo() {
+  const trintaDiasAtras = new Date();
+  trintaDiasAtras.setDate(trintaDiasAtras.getDate() - 7);
+  const dataLimite = trintaDiasAtras.toISOString().slice(0, 10);
+  
+  const histAntigo = history.filter(h => h.dataReferencia < dataLimite);
+  if (histAntigo.length > 0) {
+    history = history.filter(h => h.dataReferencia >= dataLimite);
+    save();
+  }
+}
+ 
 function todayStr() { return new Date().toLocaleDateString('pt-BR'); }
 function nowHHMM() { return new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }); }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
@@ -415,6 +432,8 @@ function deleteMed(id) {
   const btn = document.getElementById('confirmYesBtn');
   btn.onclick = () => {
     meds = meds.filter(m => m.id !== id);
+    // Remove também do histórico
+    history = history.filter(h => h.medId !== id);
     save();
     renderAll();
     closeConfirm();
@@ -422,17 +441,22 @@ function deleteMed(id) {
   };
   document.getElementById('confirmOverlay').classList.add('open');
 }
+ 
 function closeConfirm() { document.getElementById('confirmOverlay').classList.remove('open'); }
 
 function renderHistory() {
   const list = document.getElementById('histList');
+  
+  const btnLimpar = history.length > 0 
+    ? `<div style="text-align:right; margin-bottom:12px;"><button class="btn-edit" onclick="limparHistoricoCompleto()" style="background:rgba(224,85,85,0.2); color:var(--danger);">🗑️ Limpar todo histórico</button></div>`
+    : '';
+  
   if (!history.length) {
     list.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><h3>Histórico vazio</h3><p>Aqui aparecerá o registro de remédios tomados.</p></div>';
     return;
   }
   
-  list.innerHTML = history.slice(0, 100).map(h => {
-    // Formata os horários (ex: "08:00, 11:30")
+  list.innerHTML = btnLimpar + history.slice(0, 100).map(h => {
     const horariosStr = h.horarios ? h.horarios.join(', ') : h.ultimoHorario || h.time || '';
     const dosePlural = h.horarios && h.horarios.length > 1 ? 
       h.dose.replace(/1 comprimido/, `${h.horarios.length} comprimidos`).replace(/1 cápsula/, `${h.horarios.length} cápsulas`) : 
@@ -449,6 +473,15 @@ function renderHistory() {
       </div>
     `;
   }).join('');
+}
+
+// Função para limpar histórico inteiro manualmente
+function limparHistoricoCompleto() {
+  if (confirm("Tem certeza que deseja limpar TODO o histórico? Esta ação não pode ser desfeita.")) {
+    history = [];
+    save();
+    renderHistory();
+  }
 }
 
 function updateNextBanner() {

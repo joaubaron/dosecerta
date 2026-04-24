@@ -8,9 +8,7 @@
 <link rel="manifest" href="./manifest.json">
 <title>Dose Certa</title>
 <style>
-body {
-  padding-top: 10px;
-}
+body{padding-top:10px}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
 --bg:#0f2744;--surface:#162f52;--surface2:#1c3a62;
@@ -21,31 +19,25 @@ body {
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden}
 #app{display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto}
-
 .header{padding:env(safe-area-inset-top,12px) 20px 12px;flex-shrink:0}
 .header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-top:4px}
 .logo{display:flex;align-items:center;gap:10px}
-.logo-icon-title{display:flex;align-items:center;gap:10px}
 .logo-icon{font-size:22px;line-height:1}
 .logo-text h1{font-size:20px;font-weight:700;margin:0}
 .clock-display{font-size:14px;color:var(--accent);letter-spacing:0.5px;font-weight:600;margin-top:2px;margin-left:16px}
 .btn-notif{background:var(--surface);border:none;border-radius:12px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .btn-notif svg{width:20px;height:20px;fill:var(--text2)}
 .btn-notif.granted svg{fill:var(--accent)}
-
 .next-banner{margin:0 20px 16px;background:linear-gradient(135deg,var(--accent2),var(--accent));border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
 .next-banner.hidden{display:none}
 .next-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.75)}
 .next-name{font-size:16px;font-weight:700;color:white}
 .next-time{font-size:28px;font-weight:800;color:white}
-
 .tabs{display:flex;padding:0 20px;gap:8px;margin-bottom:16px;flex-shrink:0}
 .tab{flex:1;padding:10px;border:none;border-radius:var(--pill);font-size:14px;font-weight:600;cursor:pointer;background:var(--surface);color:var(--text2);transition:all 0.2s}
 .tab.active{background:var(--accent);color:white}
-
 .content{flex:1;overflow-y:auto;padding:0 20px;padding-bottom:100px;scrollbar-width:none}
 .content::-webkit-scrollbar{display:none}
-
 .med-card{background:var(--surface);border-radius:var(--radius);padding:16px;margin-bottom:12px}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start}
 .card-name{font-size:17px;font-weight:700}
@@ -61,19 +53,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Segoe 
 .btn-taken:disabled{opacity:0.5;cursor:default}
 .btn-edit{background:var(--surface2);color:var(--text2);border:none;border-radius:var(--pill);padding:9px 16px;cursor:pointer}
 .btn-del{background:rgba(224,85,85,0.15);color:var(--danger);border:none;border-radius:var(--pill);padding:9px 16px;cursor:pointer}
-
 .empty{text-align:center;padding:40px 20px;color:var(--text2)}
 .notif-req{background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;cursor:pointer}
 .notif-req.hidden{display:none}
 .notif-req svg{width:20px;height:20px;fill:var(--warn);flex-shrink:0}
-
-.fab{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));right:20px;
-background:var(--accent);color:white;border:none;border-radius:var(--pill);
-padding:16px 24px;font-size:16px;font-weight:700;cursor:pointer;
-display:flex;align-items:center;gap:8px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
-
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;
-display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity 0.25s}
+.fab{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));right:20px;background:var(--accent);color:white;border:none;border-radius:var(--pill);padding:16px 24px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity 0.25s}
 .modal-overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--surface);border-radius:24px 24px 0 0;padding:0 0 env(safe-area-inset-bottom,20px);width:100%;max-height:92vh;overflow-y:auto;transform:translateY(100%);transition:transform 0.3s}
 .modal-overlay.open .modal{transform:translateY(0)}
@@ -93,167 +78,242 @@ input:focus,select:focus{border-color:var(--accent)}
 .modal-actions{display:flex;gap:10px;padding:20px}
 .btn-save{flex:1;background:var(--accent);color:white;border:none;border-radius:var(--pill);padding:16px;font-size:16px;font-weight:700;cursor:pointer}
 .btn-cancel{background:var(--surface2);color:var(--text2);border:none;border-radius:var(--pill);padding:16px 20px;cursor:pointer}
-
-.hist-date{font-size:12px;font-weight:600;color:var(--text3);margin:16px 0 8px}
 .hist-item{background:var(--surface);border-radius:12px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
 .hist-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
 .hist-info{flex:1}
 .hist-name{font-size:15px;font-weight:600}
 .hist-detail{font-size:13px;color:var(--text2)}
 .hist-time{font-size:13px;color:var(--text3)}
-
-.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.2s}
+/* Confirm overlay */
+.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.2s;padding:24px}
 .confirm-overlay.open{opacity:1;pointer-events:all}
-.confirm-box{background:var(--surface);border-radius:20px;padding:28px 24px;width:100%;max-width:340px;text-align:center}
+.confirm-box{background:var(--surface);border-radius:20px;padding:28px 24px;width:100%;max-width:340px;text-align:center;transform:scale(0.92) translateY(8px);transition:transform 0.3s cubic-bezier(.34,1.56,.64,1)}
+.confirm-overlay.open .confirm-box{transform:scale(1) translateY(0)}
 .confirm-title{font-size:18px;font-weight:700;margin-bottom:8px}
 .confirm-btns{display:flex;gap:10px;margin-top:24px}
 .confirm-btns button{flex:1;border:none;border-radius:var(--pill);padding:14px;font-weight:600;cursor:pointer}
 .confirm-no{background:var(--surface2);color:var(--text2)}
 .confirm-yes{background:var(--danger);color:white}
+/* Modal notificações bloqueadas */
+.info-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:400;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;padding:24px}
+.info-overlay.open{opacity:1;pointer-events:all}
+.info-box{background:var(--surface);border-radius:24px;padding:32px 24px 24px;width:100%;max-width:340px;text-align:center;transform:scale(0.92) translateY(8px);transition:transform 0.3s cubic-bezier(.34,1.56,.64,1)}
+.info-overlay.open .info-box{transform:scale(1) translateY(0)}
+.info-icon{font-size:48px;margin-bottom:16px;line-height:1}
+.info-title{font-size:19px;font-weight:700;margin-bottom:10px}
+.info-body{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:8px}
+.info-steps{background:var(--surface2);border-radius:14px;padding:14px 16px;margin:16px 0 20px;text-align:left}
+.info-steps li{font-size:13px;color:var(--text2);line-height:1.6;list-style:none;display:flex;align-items:flex-start;gap:8px;margin-bottom:6px}
+.info-steps li:last-child{margin-bottom:0}
+.step-num{background:var(--warn);color:var(--bg);font-size:11px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.btn-ok{width:100%;background:var(--accent);color:white;border:none;border-radius:var(--pill);padding:14px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .15s}
+.btn-ok:active{opacity:.8}
 </style>
 </head>
 <body>
 <div id="app">
-<div class="header">
-<div class="header-top">
-<div class="logo">
-<div class="logo-icon">💊</div>
-<div class="logo-text"><h1>Dose Certa</h1></div>
-<div class="clock-display" id="clockDisplay">--:--</div>
-</div>
-<button class="btn-notif" id="btnNotif" onclick="solicitarPermissaoPush()"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5S10.5 3.17 10.5 4v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></button>
-</div>
-</div>
-<div class="next-banner hidden" id="nextBanner"><div><div class="next-label">Próxima dose</div><div class="next-name" id="nextName">—</div></div><div class="next-time" id="nextTimeDisplay">--:--</div></div>
-<div class="tabs"><button class="tab active" id="tabMedsBtn" onclick="showTab('meds')">Meus remédios</button><button class="tab" id="tabHistBtn" onclick="showTab('history')">Histórico</button></div>
-<div class="content" id="contentMeds"><div class="notif-req hidden" id="notifBanner" onclick="solicitarPermissaoPush()"><p>🔔 Toque para ativar alertas mesmo com tela bloqueada</p></div><div id="medList"></div></div>
-<div class="content" id="contentHistory" style="display:none"><div id="histList"></div></div>
-<button class="fab" onclick="openModal()">➕ Adicionar</button>
+  <div class="header">
+    <div class="header-top">
+      <div class="logo">
+        <div class="logo-icon">💊</div>
+        <div class="logo-text"><h1>Dose Certa</h1></div>
+        <div class="clock-display" id="clockDisplay">--:--</div>
+      </div>
+      <button class="btn-notif" id="btnNotif" onclick="solicitarPermissaoPush()">
+        <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5S10.5 3.17 10.5 4v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="next-banner hidden" id="nextBanner">
+    <div><div class="next-label">Próxima dose</div><div class="next-name" id="nextName">—</div></div>
+    <div class="next-time" id="nextTimeDisplay">--:--</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" id="tabMedsBtn" onclick="showTab('meds')">Meus remédios</button>
+    <button class="tab" id="tabHistBtn" onclick="showTab('history')">Histórico</button>
+  </div>
+
+  <div class="content" id="contentMeds">
+    <div class="notif-req hidden" id="notifBanner" onclick="solicitarPermissaoPush()">
+      <p>🔔 Toque para ativar alertas mesmo com tela bloqueada</p>
+    </div>
+    <div id="medList"></div>
+  </div>
+
+  <div class="content" id="contentHistory" style="display:none">
+    <div id="histList"></div>
+  </div>
+
+  <button class="fab" onclick="openModal()">➕ Adicionar</button>
 </div>
 
+<!-- Modal: Adicionar/Editar -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
-<div class="modal">
-<div class="modal-handle"></div>
-<div class="modal-title" id="modalTitle">Novo remédio</div>
-<div class="field"><label>Nome do remédio</label><input type="text" id="fName" placeholder="Ex: Diovan, Losartana..." autocomplete="off"></div>
-<div class="field"><label>Dosagem</label><input type="text" id="fDose" placeholder="Ex: 50mg, 1 comprimido" autocomplete="off"></div>
-<div class="field"><label>Frequência</label><select id="fFreq"><option value="daily">Diária</option><option value="weekly">Semanal</option><option value="asneeded">Quando necessário</option></select></div>
-<div class="times-builder"><label>Horários</label><div class="times-list" id="timeTagsList"></div><div class="time-add-row"><input type="time" id="fTime" value="08:00"><button class="btn-add-time" onclick="addTime()">+ Adicionar</button></div><small style="color:var(--text3);font-size:11px;display:block;margin-top:6px">Ex: 08:00, 14:00, 20:00</small></div>
-<div class="field"><label>Observações (opcional)</label><input type="text" id="fNotes" placeholder="Ex: Tomar em jejum" autocomplete="off"></div>
-<div class="modal-actions"><button class="btn-cancel" onclick="closeModal()">Cancelar</button><button class="btn-save" onclick="saveMed()">Salvar</button></div>
-</div>
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modalTitle">Novo remédio</div>
+    <div class="field"><label>Nome do remédio</label><input type="text" id="fName" placeholder="Ex: Diovan, Losartana..." autocomplete="off"></div>
+    <div class="field"><label>Dosagem</label><input type="text" id="fDose" placeholder="Ex: 50mg, 1 comprimido" autocomplete="off"></div>
+    <div class="field"><label>Frequência</label><select id="fFreq"><option value="daily">Diária</option><option value="weekly">Semanal</option><option value="asneeded">Quando necessário</option></select></div>
+    <div class="times-builder">
+      <label>Horários</label>
+      <div class="times-list" id="timeTagsList"></div>
+      <div class="time-add-row"><input type="time" id="fTime" value="08:00"><button class="btn-add-time" onclick="addTime()">+ Adicionar</button></div>
+      <small style="color:var(--text3);font-size:11px;display:block;margin-top:6px">Ex: 08:00, 14:00, 20:00</small>
+    </div>
+    <div class="field"><label>Observações (opcional)</label><input type="text" id="fNotes" placeholder="Ex: Tomar em jejum" autocomplete="off"></div>
+    <div class="modal-actions"><button class="btn-cancel" onclick="closeModal()">Cancelar</button><button class="btn-save" onclick="saveMed()">Salvar</button></div>
+  </div>
 </div>
 
-<div class="confirm-overlay" id="confirmOverlay"><div class="confirm-box"><div class="confirm-title" id="confirmTitle">Remover remédio?</div><div class="confirm-btns"><button class="confirm-no" onclick="closeConfirm()">Cancelar</button><button class="confirm-yes" id="confirmYesBtn">Remover</button></div></div></div>
-<div class="confirm-overlay" id="confirmClearHistoryOverlay"><div class="confirm-box"><div class="confirm-title">Limpar TODO o histórico?</div><div class="confirm-btns"><button class="confirm-no" onclick="closeClearHistoryConfirm()">Cancelar</button><button class="confirm-yes" onclick="confirmClearHistory()">Limpar</button></div></div></div>
+<!-- Modal: Confirmar remoção -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-title" id="confirmTitle">Remover remédio?</div>
+    <div class="confirm-btns">
+      <button class="confirm-no" onclick="closeConfirm()">Cancelar</button>
+      <button class="confirm-yes" id="confirmYesBtn">Remover</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Confirmar limpar histórico -->
+<div class="confirm-overlay" id="confirmClearHistoryOverlay">
+  <div class="confirm-box">
+    <div class="confirm-title">Limpar TODO o histórico?</div>
+    <div class="confirm-btns">
+      <button class="confirm-no" onclick="closeClearHistoryConfirm()">Cancelar</button>
+      <button class="confirm-yes" onclick="confirmClearHistory()">Limpar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Notificações bloqueadas -->
+<div class="info-overlay" id="blockedModal">
+  <div class="info-box">
+    <div class="info-icon">🔕</div>
+    <div class="info-title">Notificações bloqueadas</div>
+    <div class="info-body">Você bloqueou as notificações anteriormente.<br>Para reativar, siga os passos abaixo:</div>
+    <ul class="info-steps">
+      <li><span class="step-num">1</span><span>Toque no ícone de <strong>cadeado 🔒</strong> ou <strong>ⓘ</strong> na barra de endereço</span></li>
+      <li><span class="step-num">2</span><span>Selecione <strong>Permissões do site</strong></span></li>
+      <li><span class="step-num">3</span><span>Mude <strong>Notificações</strong> para <em>Permitir</em></span></li>
+      <li><span class="step-num">4</span><span>Recarregue o app e tente novamente</span></li>
+    </ul>
+    <button class="btn-ok" onclick="closeBlockedModal()">Entendi</button>
+  </div>
+</div>
 
 <script>
-// ==================== CONFIGURAÇÕES ====================
 const VAPID_PUBLIC_KEY = 'BO5DP1GQXi-qWd2E_rxNjEcqm00zVnZTY7x_m0435XEPuORtnAee5QzdfJwQJOI1Alk6I4rKFh_CMHCh2qUgU7o';
 
 let subscription = null;
 let meds = [], history = [], takenToday = {};
 let editingId = null, tempTimes = [], currentTab = 'meds';
 
-// ==================== STORAGE ====================
 function load() {
-try { meds = JSON.parse(localStorage.getItem('dosecerta_meds')) || []; } catch(e) { meds = []; }
-try { history = JSON.parse(localStorage.getItem('dosecerta_hist')) || []; } catch(e) { history = []; }
-try { takenToday = JSON.parse(localStorage.getItem('dosecerta_taken')) || {}; } catch(e) { takenToday = {}; }
-cleanTakenToday();
+  try { meds = JSON.parse(localStorage.getItem('dosecerta_meds')) || []; } catch(e) { meds = []; }
+  try { history = JSON.parse(localStorage.getItem('dosecerta_hist')) || []; } catch(e) { history = []; }
+  try { takenToday = JSON.parse(localStorage.getItem('dosecerta_taken')) || {}; } catch(e) { takenToday = {}; }
+  cleanTakenToday();
 }
 
 function save() {
-localStorage.setItem('dosecerta_meds', JSON.stringify(meds));
-localStorage.setItem('dosecerta_hist', JSON.stringify(history.slice(0, 500)));
-localStorage.setItem('dosecerta_taken', JSON.stringify(takenToday));
-enviarMedsParaServiceWorker();
+  localStorage.setItem('dosecerta_meds', JSON.stringify(meds));
+  localStorage.setItem('dosecerta_hist', JSON.stringify(history.slice(0, 500)));
+  localStorage.setItem('dosecerta_taken', JSON.stringify(takenToday));
+  enviarMedsParaServiceWorker();
 }
 
 function cleanTakenToday() {
-const today = new Date().toLocaleDateString('pt-BR');
-if (takenToday._date !== today) { takenToday = { _date: today }; save(); }
-limparHistoricoAntigo();
+  const today = new Date().toLocaleDateString('pt-BR');
+  if (takenToday._date !== today) { takenToday = { _date: today }; save(); }
+  limparHistoricoAntigo();
 }
 
 function limparHistoricoAntigo() {
-const seteDiasAtras = new Date();
-seteDiasAtras.setDate(seteDiasAtras.getDate() - 7);
-const dataLimite = seteDiasAtras.toISOString().slice(0,10);
-history = history.filter(h => h.dataReferencia >= dataLimite);
-save();
+  const seteDiasAtras = new Date();
+  seteDiasAtras.setDate(seteDiasAtras.getDate() - 7);
+  const dataLimite = seteDiasAtras.toISOString().slice(0,10);
+  history = history.filter(h => h.dataReferencia >= dataLimite);
+  save();
 }
 
 function nowHHMM() { return new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }); }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
-function esc(s) { return String(s).replace(/[&<>]/g, function(m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]; }); }
+function esc(s) { return String(s).replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m])); }
 
-// ==================== SERVICE WORKER ====================
 async function registrarServiceWorker() {
-if (!('serviceWorker' in navigator)) return;
-const reg = await navigator.serviceWorker.register('./sw.js');
-console.log('SW registrado');
-return reg;
+  if (!('serviceWorker' in navigator)) return;
+  const reg = await navigator.serviceWorker.register('./sw.js');
+  return reg;
+}
+
+function openBlockedModal() {
+  document.getElementById('blockedModal').classList.add('open');
+}
+function closeBlockedModal() {
+  document.getElementById('blockedModal').classList.remove('open');
 }
 
 async function solicitarPermissaoPush() {
-if (!('Notification' in window)) { alert('Seu navegador não suporta notificações'); return; }
-const permissao = Notification.permission;
-if (permissao === 'denied') {
-alert('As notificações estão bloqueadas. Por favor, desbloqueie nas configurações do navegador.');
-return;
-}
-if (permissao === 'granted') {
-await inscreverPush();
-return;
-}
-const result = await Notification.requestPermission();
-if (result === 'granted') {
-await inscreverPush();
-document.getElementById('btnNotif').classList.add('granted');
-document.getElementById('notifBanner').classList.add('hidden');
-registrarNotificacaoTeste();
-}
+  if (!('Notification' in window)) { return; }
+  const permissao = Notification.permission;
+  if (permissao === 'denied') {
+    openBlockedModal();
+    return;
+  }
+  if (permissao === 'granted') {
+    await inscreverPush();
+    return;
+  }
+  const result = await Notification.requestPermission();
+  if (result === 'granted') {
+    await inscreverPush();
+    document.getElementById('btnNotif').classList.add('granted');
+    document.getElementById('notifBanner').classList.add('hidden');
+    registrarNotificacaoTeste();
+  }
 }
 
 async function inscreverPush() {
-if (!('serviceWorker' in navigator)) return;
-const reg = await navigator.serviceWorker.ready;
-const existing = await reg.pushManager.getSubscription();
-if (existing) { subscription = existing; return; }
-try {
-const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: VAPID_PUBLIC_KEY });
-subscription = sub;
-localStorage.setItem('push_sub', JSON.stringify(sub));
-} catch(e) { console.error('Erro push:', e); }
+  if (!('serviceWorker' in navigator)) return;
+  const reg = await navigator.serviceWorker.ready;
+  const existing = await reg.pushManager.getSubscription();
+  if (existing) { subscription = existing; return; }
+  try {
+    const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: VAPID_PUBLIC_KEY });
+    subscription = sub;
+    localStorage.setItem('push_sub', JSON.stringify(sub));
+  } catch(e) { console.error('Erro push:', e); }
 }
 
 async function registrarNotificacaoTeste() {
-const reg = await navigator.serviceWorker.ready;
-reg.showNotification('✅ Alertas ativados!', { body: 'Você receberá lembretes nos horários cadastrados.', icon: './icons/icon-192.png' });
+  const reg = await navigator.serviceWorker.ready;
+  reg.showNotification('✅ Alertas ativados!', { body: 'Você receberá lembretes nos horários cadastrados.', icon: './icons/icon-192.png' });
 }
 
-// ==================== TABS ====================
 function showTab(tab) {
-currentTab = tab;
-document.getElementById('tabMedsBtn').classList.toggle('active', tab === 'meds');
-document.getElementById('tabHistBtn').classList.toggle('active', tab === 'history');
-document.getElementById('contentMeds').style.display = tab === 'meds' ? 'block' : 'none';
-document.getElementById('contentHistory').style.display = tab === 'history' ? 'block' : 'none';
-if (tab === 'history') renderHistory();
+  currentTab = tab;
+  document.getElementById('tabMedsBtn').classList.toggle('active', tab === 'meds');
+  document.getElementById('tabHistBtn').classList.toggle('active', tab === 'history');
+  document.getElementById('contentMeds').style.display = tab === 'meds' ? 'block' : 'none';
+  document.getElementById('contentHistory').style.display = tab === 'history' ? 'block' : 'none';
+  if (tab === 'history') renderHistory();
 }
 
-// ==================== RENDER ====================
 function renderMeds() {
-const list = document.getElementById('medList');
-if (!meds.length) {
-list.innerHTML = '<div class="empty"><div class="empty-icon">💊</div><h3>Nenhum remédio ainda</h3><p>Toque em "Adicionar" para cadastrar seu primeiro remédio e configurar os horários.</p></div>';
-return;
-}
-list.innerHTML = meds.map(med => {
-const allTaken = (med.times || []).length > 0 && (med.times || []).every(t => takenToday[`${med.id}_${t}`]);
-const timesHtml = (med.times || []).map(t => `<div class="time-chip${takenToday[`${med.id}_${t}`] ? ' taken' : ''}"><span class="chip-dot ok"></span>${t}</div>`).join('');
-return `<div class="med-card">
+  const list = document.getElementById('medList');
+  if (!meds.length) {
+    list.innerHTML = '<div class="empty"><div>💊</div><h3>Nenhum remédio ainda</h3><p>Toque em "Adicionar" para cadastrar seu primeiro remédio e configurar os horários.</p></div>';
+    return;
+  }
+  list.innerHTML = meds.map(med => {
+    const allTaken = (med.times || []).length > 0 && (med.times || []).every(t => takenToday[`${med.id}_${t}`]);
+    const timesHtml = (med.times || []).map(t => `<div class="time-chip${takenToday[`${med.id}_${t}`] ? ' taken' : ''}"><span class="chip-dot ok"></span>${t}</div>`).join('');
+    return `<div class="med-card">
 <div class="card-top"><div class="card-name">${esc(med.name)}</div><div class="card-dose">${esc(med.dose)}</div></div>
 ${med.notes ? `<div style="font-size:13px;color:var(--text2);margin-top:6px">${esc(med.notes)}</div>` : ''}
 ${timesHtml ? `<div class="card-times">${timesHtml}</div>` : '<div style="font-size:12px;color:var(--text3);margin-top:8px">Sem horários definidos</div>'}
@@ -261,279 +321,233 @@ ${timesHtml ? `<div class="card-times">${timesHtml}</div>` : '<div style="font-s
 <button class="btn-taken" onclick="marcarTomado('${med.id}')" ${allTaken ? 'disabled' : ''}>${allTaken ? '✓ Tudo tomado' : '✓ Marcar tomado'}</button>
 <button class="btn-edit" onclick="openModal('${med.id}')">Editar</button>
 <button class="btn-del" onclick="deleteMed('${med.id}')">Remover</button>
-</div>
-</div>`;
-}).join('');
+</div></div>`;
+  }).join('');
 }
 
 function marcarTomado(id) {
-const med = meds.find(m => m.id === id);
-if (!med) return;
-const agora = nowHHMM();
-const times = med.times || [];
-let horarioMarcado = null;
+  const med = meds.find(m => m.id === id);
+  if (!med) return;
+  const agora = nowHHMM();
+  const times = med.times || [];
+  let horarioMarcado = null;
 
-if (times.length === 0) {
-const chave = `${id}_geral_${agora}`;
-if (!takenToday[chave]) {
-takenToday[chave] = new Date().toISOString();
-horarioMarcado = "agora";
-}
-} else {
-const agoraMinutes = parseInt(agora.split(':')[0]) * 60 + parseInt(agora.split(':')[1]);
-let menorDiferenca = Infinity;
-let melhorHorario = null;
-for (const t of times) {
-if (takenToday[`${id}_${t}`]) continue;
-const [th, tm] = t.split(':').map(Number);
-const tMinutes = th * 60 + tm;
-let diff = tMinutes - agoraMinutes;
-if (diff >= 0 && diff < menorDiferenca) {
-menorDiferenca = diff;
-melhorHorario = t;
-}
-}
-if (melhorHorario) {
-takenToday[`${id}_${melhorHorario}`] = new Date().toISOString();
-horarioMarcado = melhorHorario;
-} else if (!times.some(t => !takenToday[`${id}_${t}`])) {
-return;
-} else {
-for (const t of times) {
-if (!takenToday[`${id}_${t}`]) {
-takenToday[`${id}_${t}`] = new Date().toISOString();
-horarioMarcado = t;
-break;
-}
-}
-}
-}
+  if (times.length === 0) {
+    const chave = `${id}_geral_${agora}`;
+    if (!takenToday[chave]) { takenToday[chave] = new Date().toISOString(); horarioMarcado = 'agora'; }
+  } else {
+    const agoraMinutes = parseInt(agora.split(':')[0]) * 60 + parseInt(agora.split(':')[1]);
+    let menorDiferenca = Infinity, melhorHorario = null;
+    for (const t of times) {
+      if (takenToday[`${id}_${t}`]) continue;
+      const [th, tm] = t.split(':').map(Number);
+      const tMinutes = th * 60 + tm;
+      let diff = tMinutes - agoraMinutes;
+      if (diff >= 0 && diff < menorDiferenca) { menorDiferenca = diff; melhorHorario = t; }
+    }
+    if (melhorHorario) {
+      takenToday[`${id}_${melhorHorario}`] = new Date().toISOString();
+      horarioMarcado = melhorHorario;
+    } else if (!times.some(t => !takenToday[`${id}_${t}`])) {
+      return;
+    } else {
+      for (const t of times) {
+        if (!takenToday[`${id}_${t}`]) { takenToday[`${id}_${t}`] = new Date().toISOString(); horarioMarcado = t; break; }
+      }
+    }
+  }
 
-if (horarioMarcado) {
-const hojeISO = new Date().toISOString().slice(0,10);
-const hojeLegivel = new Date().toLocaleDateString('pt-BR');
-const indice = history.findIndex(h => h.medId === id && h.dataReferencia === hojeISO);
-if (indice !== -1) {
-const entry = history[indice];
-const horariosReg = entry.horarios || [];
-if (!horariosReg.includes(horarioMarcado)) {
-horariosReg.push(horarioMarcado);
-horariosReg.sort();
-}
-history[indice] = { ...entry, horarios: horariosReg, ultimoHorario: horarioMarcado, updatedAt: new Date().toISOString() };
-} else {
-history.unshift({ medId: id, medName: med.name, dose: med.dose, horarios: [horarioMarcado], dataReferencia: hojeISO, dataLegivel: hojeLegivel, takenAt: new Date().toISOString() });
-}
-save();
-renderAll();
-if (currentTab === 'history') renderHistory();
-}
+  if (horarioMarcado) {
+    const hojeISO = new Date().toISOString().slice(0,10);
+    const hojeLegivel = new Date().toLocaleDateString('pt-BR');
+    const indice = history.findIndex(h => h.medId === id && h.dataReferencia === hojeISO);
+    if (indice !== -1) {
+      const entry = history[indice];
+      const horariosReg = entry.horarios || [];
+      if (!horariosReg.includes(horarioMarcado)) { horariosReg.push(horarioMarcado); horariosReg.sort(); }
+      history[indice] = { ...entry, horarios: horariosReg, ultimoHorario: horarioMarcado, updatedAt: new Date().toISOString() };
+    } else {
+      history.unshift({ medId: id, medName: med.name, dose: med.dose, horarios: [horarioMarcado], dataReferencia: hojeISO, dataLegivel: hojeLegivel, takenAt: new Date().toISOString() });
+    }
+    save();
+    renderAll();
+    if (currentTab === 'history') renderHistory();
+  }
 }
 
 function deleteMed(id) {
-const med = meds.find(m => m.id === id);
-if (!med) return;
-document.getElementById('confirmTitle').innerHTML = `Remover "${esc(med.name)}"?`;
-const btn = document.getElementById('confirmYesBtn');
-const newBtn = btn.cloneNode(true);
-btn.parentNode.replaceChild(newBtn, btn);
-newBtn.onclick = () => {
-meds = meds.filter(m => m.id !== id);
-history = history.filter(h => h.medId !== id);
-save();
-renderAll();
-closeConfirm();
-};
-document.getElementById('confirmOverlay').classList.add('open');
+  const med = meds.find(m => m.id === id);
+  if (!med) return;
+  document.getElementById('confirmTitle').innerHTML = `Remover "${esc(med.name)}"?`;
+  const btn = document.getElementById('confirmYesBtn');
+  const newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+  newBtn.onclick = () => {
+    meds = meds.filter(m => m.id !== id);
+    history = history.filter(h => h.medId !== id);
+    save(); renderAll(); closeConfirm();
+  };
+  document.getElementById('confirmOverlay').classList.add('open');
 }
 
 function closeConfirm() { document.getElementById('confirmOverlay').classList.remove('open'); }
 
 function renderHistory() {
-const list = document.getElementById('histList');
-if (!history.length) {
-list.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><h3>Histórico vazio</h3><p>Aqui aparecerá o registro de remédios tomados.</p></div>';
-return;
-}
-const btnLimpar = `<div style="text-align:right; margin-bottom:12px;"><button class="btn-edit" onclick="openClearHistoryConfirm()" style="background:rgba(224,85,85,0.2); color:var(--danger);">🗑️ Limpar todo histórico</button></div>`;
-list.innerHTML = btnLimpar + history.slice(0, 100).map(h => {
-const horariosStr = (h.horarios && h.horarios.length) ? h.horarios.join(', ') : (h.ultimoHorario || 'tomado');
-return `<div class="hist-item"><div class="hist-dot"></div><div class="hist-info"><div class="hist-name">${esc(h.medName)}</div><div class="hist-detail">${esc(h.dose)} · ${horariosStr}</div></div><div class="hist-time">${h.dataLegivel || new Date(h.takenAt).toLocaleDateString('pt-BR')}</div></div>`;
-}).join('');
+  const list = document.getElementById('histList');
+  if (!history.length) {
+    list.innerHTML = '<div class="empty"><div>📋</div><h3>Histórico vazio</h3><p>Aqui aparecerá o registro de remédios tomados.</p></div>';
+    return;
+  }
+  const btnLimpar = `<div style="text-align:right;margin-bottom:12px"><button class="btn-edit" onclick="openClearHistoryConfirm()" style="background:rgba(224,85,85,0.2);color:var(--danger)">🗑️ Limpar todo histórico</button></div>`;
+  list.innerHTML = btnLimpar + history.slice(0, 100).map(h => {
+    const horariosStr = (h.horarios && h.horarios.length) ? h.horarios.join(', ') : (h.ultimoHorario || 'tomado');
+    return `<div class="hist-item"><div class="hist-dot"></div><div class="hist-info"><div class="hist-name">${esc(h.medName)}</div><div class="hist-detail">${esc(h.dose)} · ${horariosStr}</div></div><div class="hist-time">${h.dataLegivel || new Date(h.takenAt).toLocaleDateString('pt-BR')}</div></div>`;
+  }).join('');
 }
 
-function openClearHistoryConfirm() {
-document.getElementById('confirmClearHistoryOverlay').classList.add('open');
-}
+function openClearHistoryConfirm() { document.getElementById('confirmClearHistoryOverlay').classList.add('open'); }
 function closeClearHistoryConfirm() { document.getElementById('confirmClearHistoryOverlay').classList.remove('open'); }
-function confirmClearHistory() {
-history = [];
-save();
-renderHistory();
-closeClearHistoryConfirm();
-}
+function confirmClearHistory() { history = []; save(); renderHistory(); closeClearHistoryConfirm(); }
 
 function updateNextBanner() {
-const banner = document.getElementById('nextBanner');
-const agora = nowHHMM();
-const agoraMinutes = parseInt(agora.split(':')[0]) * 60 + parseInt(agora.split(':')[1]);
-let proximo = null;
-for (const med of meds) {
-for (const t of (med.times || [])) {
-if (takenToday[`${med.id}_${t}`]) continue;
-const [h, m] = t.split(':').map(Number);
-const tMinutes = h * 60 + m;
-if (tMinutes >= agoraMinutes) {
-if (!proximo || tMinutes < proximo.minutes) {
-proximo = { name: med.name, time: t, minutes: tMinutes };
-}
-}
-}
-}
-if (proximo) {
-document.getElementById('nextName').textContent = proximo.name;
-document.getElementById('nextTimeDisplay').textContent = proximo.time;
-banner.classList.remove('hidden');
-} else {
-banner.classList.add('hidden');
-}
+  const banner = document.getElementById('nextBanner');
+  const agora = nowHHMM();
+  const agoraMinutes = parseInt(agora.split(':')[0]) * 60 + parseInt(agora.split(':')[1]);
+  let proximo = null;
+  for (const med of meds) {
+    for (const t of (med.times || [])) {
+      if (takenToday[`${med.id}_${t}`]) continue;
+      const [h, m] = t.split(':').map(Number);
+      const tMinutes = h * 60 + m;
+      if (tMinutes >= agoraMinutes) {
+        if (!proximo || tMinutes < proximo.minutes) proximo = { name: med.name, time: t, minutes: tMinutes };
+      }
+    }
+  }
+  if (proximo) {
+    document.getElementById('nextName').textContent = proximo.name;
+    document.getElementById('nextTimeDisplay').textContent = proximo.time;
+    banner.classList.remove('hidden');
+  } else {
+    banner.classList.add('hidden');
+  }
 }
 
 function updateClock() {
-const clockSpan = document.getElementById('clockDisplay');
-if (clockSpan) clockSpan.textContent = nowHHMM();
+  const el = document.getElementById('clockDisplay');
+  if (el) el.textContent = nowHHMM();
 }
 
 async function renderAll() {
-renderMeds();
-updateNextBanner();
-if (currentTab === 'history') renderHistory();
-if (Notification.permission === 'granted') {
-document.getElementById('btnNotif').classList.add('granted');
-document.getElementById('notifBanner').classList.add('hidden');
-} else {
-document.getElementById('btnNotif').classList.remove('granted');
-if (meds.length > 0) document.getElementById('notifBanner').classList.remove('hidden');
-}
+  renderMeds();
+  updateNextBanner();
+  if (currentTab === 'history') renderHistory();
+  if (Notification.permission === 'granted') {
+    document.getElementById('btnNotif').classList.add('granted');
+    document.getElementById('notifBanner').classList.add('hidden');
+  } else {
+    document.getElementById('btnNotif').classList.remove('granted');
+    if (meds.length > 0) document.getElementById('notifBanner').classList.remove('hidden');
+  }
 }
 
-// ==================== MODAL ====================
 function openModal(id = null) {
-editingId = id;
-tempTimes = [];
-document.getElementById('fName').value = '';
-document.getElementById('fDose').value = '';
-document.getElementById('fNotes').value = '';
-document.getElementById('fFreq').value = 'daily';
-document.getElementById('fTime').value = '08:00';
-document.getElementById('modalTitle').textContent = id ? '✏️ Editar remédio' : '➕ Novo remédio';
-if (id) {
-const med = meds.find(m => m.id === id);
-if (med) {
-document.getElementById('fName').value = med.name;
-document.getElementById('fDose').value = med.dose;
-document.getElementById('fNotes').value = med.notes || '';
-document.getElementById('fFreq').value = med.freq || 'daily';
-tempTimes = [...(med.times || [])];
-}
-}
-renderTimeTags();
-document.getElementById('modalOverlay').classList.add('open');
+  editingId = id; tempTimes = [];
+  document.getElementById('fName').value = '';
+  document.getElementById('fDose').value = '';
+  document.getElementById('fNotes').value = '';
+  document.getElementById('fFreq').value = 'daily';
+  document.getElementById('fTime').value = '08:00';
+  document.getElementById('modalTitle').textContent = id ? '✏️ Editar remédio' : '➕ Novo remédio';
+  if (id) {
+    const med = meds.find(m => m.id === id);
+    if (med) {
+      document.getElementById('fName').value = med.name;
+      document.getElementById('fDose').value = med.dose;
+      document.getElementById('fNotes').value = med.notes || '';
+      document.getElementById('fFreq').value = med.freq || 'daily';
+      tempTimes = [...(med.times || [])];
+    }
+  }
+  renderTimeTags();
+  document.getElementById('modalOverlay').classList.add('open');
 }
 
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); editingId = null; }
 function handleOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
 
 function renderTimeTags() {
-const container = document.getElementById('timeTagsList');
-if (!container) return;
-container.innerHTML = tempTimes.map((t, i) => `<div class="time-tag">${t}<button onclick="removeTime(${i})">×</button></div>`).join('');
+  const container = document.getElementById('timeTagsList');
+  if (!container) return;
+  container.innerHTML = tempTimes.map((t, i) => `<div class="time-tag">${t}<button onclick="removeTime(${i})">×</button></div>`).join('');
 }
 
 function addTime() {
-const v = document.getElementById('fTime').value;
-if (!v) return;
-if (!tempTimes.includes(v)) { tempTimes.push(v); tempTimes.sort(); }
-renderTimeTags();
+  const v = document.getElementById('fTime').value;
+  if (!v) return;
+  if (!tempTimes.includes(v)) { tempTimes.push(v); tempTimes.sort(); }
+  renderTimeTags();
 }
 
 function removeTime(i) { tempTimes.splice(i, 1); renderTimeTags(); }
 
 function saveMed() {
-const name = document.getElementById('fName').value.trim();
-const dose = document.getElementById('fDose').value.trim();
-if (!name || !dose) { alert('Por favor, preencha nome e dosagem.'); return; }
-const finalTimes = [...tempTimes];
-const med = {
-id: editingId || uid(),
-name: name,
-dose: dose,
-freq: document.getElementById('fFreq').value,
-times: finalTimes,
-notes: document.getElementById('fNotes').value.trim(),
-createdAt: editingId ? (meds.find(m => m.id === editingId) || {}).createdAt || new Date().toISOString() : new Date().toISOString()
-};
-if (editingId) {
-meds = meds.map(m => m.id === editingId ? med : m);
-} else {
-meds = [...meds, med];
-}
-save();
-closeModal();
-renderAll();
+  const name = document.getElementById('fName').value.trim();
+  const dose = document.getElementById('fDose').value.trim();
+  if (!name || !dose) { return; }
+  const med = {
+    id: editingId || uid(),
+    name, dose,
+    freq: document.getElementById('fFreq').value,
+    times: [...tempTimes],
+    notes: document.getElementById('fNotes').value.trim(),
+    createdAt: editingId ? (meds.find(m => m.id === editingId) || {}).createdAt || new Date().toISOString() : new Date().toISOString()
+  };
+  if (editingId) { meds = meds.map(m => m.id === editingId ? med : m); }
+  else { meds = [...meds, med]; }
+  save(); closeModal(); renderAll();
 }
 
-// ==================== SERVICE WORKER COMUNICAÇÃO ====================
 async function enviarMedsParaServiceWorker() {
-if (!navigator.serviceWorker || !navigator.serviceWorker.controller) return;
-try {
-navigator.serviceWorker.controller.postMessage({
-type: 'UPDATE_MEDS_DATA',
-data: { meds: meds.map(({ id, name, dose, times }) => ({ id, name, dose, times })), takenToday: takenToday }
-});
-navigator.serviceWorker.controller.postMessage({ type: 'SCHEDULE_ALARMS' });
-} catch(e) {}
+  if (!navigator.serviceWorker || !navigator.serviceWorker.controller) return;
+  try {
+    navigator.serviceWorker.controller.postMessage({ type: 'UPDATE_MEDS_DATA', data: { meds: meds.map(({ id, name, dose, times }) => ({ id, name, dose, times })), takenToday } });
+    navigator.serviceWorker.controller.postMessage({ type: 'SCHEDULE_ALARMS' });
+  } catch(e) {}
 }
 
 if (navigator.serviceWorker) {
-navigator.serviceWorker.addEventListener('message', async e => {
-if (e.data?.type === 'GET_MEDS_DATA' && e.ports && e.ports[0]) {
-e.ports[0].postMessage({
-meds: meds.map(({ id, name, dose, times }) => ({ id, name, dose, times })),
-takenToday: takenToday
-});
-}
-});
+  navigator.serviceWorker.addEventListener('message', async e => {
+    if (e.data?.type === 'GET_MEDS_DATA' && e.ports && e.ports[0]) {
+      e.ports[0].postMessage({ meds: meds.map(({ id, name, dose, times }) => ({ id, name, dose, times })), takenToday });
+    }
+  });
 }
 
 document.addEventListener('visibilitychange', () => {
-if (!document.hidden && navigator.serviceWorker?.controller) {
-navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
-}
+  if (!document.hidden && navigator.serviceWorker?.controller) {
+    navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
+  }
 });
 
-// ==================== INIT ====================
 (async function init() {
-load();
-updateClock();
-setInterval(updateClock, 1000);
-await registrarServiceWorker();
-if (navigator.serviceWorker) {
-await navigator.serviceWorker.ready;
-if (!navigator.serviceWorker.controller) {
-setTimeout(() => window.location.reload(), 300);
-return;
-}
-}
-renderAll();
-if (navigator.serviceWorker?.controller) {
-enviarMedsParaServiceWorker();
-navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
-}
-setInterval(() => {
-if (navigator.serviceWorker?.controller) navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
-}, 15 * 60 * 1000);
-if (Notification.permission === 'granted') document.getElementById('btnNotif')?.classList.add('granted');
+  load();
+  updateClock();
+  setInterval(updateClock, 1000);
+  await registrarServiceWorker();
+  if (navigator.serviceWorker) {
+    await navigator.serviceWorker.ready;
+    if (!navigator.serviceWorker.controller) { setTimeout(() => window.location.reload(), 300); return; }
+  }
+  renderAll();
+  if (navigator.serviceWorker?.controller) {
+    enviarMedsParaServiceWorker();
+    navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
+  }
+  setInterval(() => {
+    if (navigator.serviceWorker?.controller) navigator.serviceWorker.controller.postMessage({ type: 'CHECK_MEDS' });
+  }, 15 * 60 * 1000);
+  if (Notification.permission === 'granted') document.getElementById('btnNotif')?.classList.add('granted');
 })();
 </script>
 </body>

@@ -1,5 +1,5 @@
-const CACHE_VERSION = '24.04.2026-1527';
-const CACHE_NAME = `dosecerta-${CACHE_VERSION}`;
+const CACHE_VERSION = '24.04.2026-1249';
+const CACHE_NAME = `medlembrar-${CACHE_VERSION}`;
 const ASSETS = [
 './index.html',
 './manifest.json',
@@ -15,18 +15,14 @@ self.skipWaiting();
 
 // Ativação - limpa caches antigos + agenda alarmes
 self.addEventListener('activate', e => {
-e.waitUntil(async () => {
-// Limpa caches antigos
+e.waitUntil((async () => {
 const keys = await caches.keys();
 await Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)));
-
-// Agenda alarmes para todos os horários se suportado
+await self.clients.claim();
 if ('alarms' in self) {
 await agendarTodosAlarmes();
 }
-
-await self.clients.claim();
-}());
+})());
 });
 
 // Busca em cache
@@ -61,6 +57,10 @@ e.waitUntil(verificarHorariosPendentes());
 
 // Mensagem do app principal
 self.addEventListener('message', async e => {
+if (e.data?.type === 'UPDATE_MEDS_DATA') {
+const cache = await caches.open('meds-data-cache');
+await cache.put('meds', new Response(JSON.stringify(e.data.data)));
+}
 if (e.data?.type === 'CHECK_MEDS') {
 await verificarHorariosPendentes();
 }
@@ -78,8 +78,6 @@ e.waitUntil(clients.openWindow('.'));
 // ============ FUNÇÕES PRINCIPAIS ============
 
 async function verificarHorariosPendentes() {
-console.log('🔍 Verificando horários pendentes...');
-
 let meds = [];
 let takenToday = {};
 
@@ -92,19 +90,17 @@ channel.port1.onmessage = e => resolve(e.data);
 client.postMessage({ type: 'GET_MEDS_DATA' }, [channel.port2]);
 setTimeout(() => resolve(null), 500);
 });
-if (response) {
-meds = response.meds || [];
-takenToday = response.takenToday || {};
-break;
-}
-} catch (err) {
-console.warn('Erro ao buscar dados:', err);
-}
+if (response) { meds = response.meds || []; takenToday = response.takenToday || {}; break; }
+} catch (err) {}
 }
 
+// fallback: ler do cache persistido
 if (!meds.length) {
-console.log('Nenhum medicamento encontrado');
-return;
+try {
+const cache = await caches.open('meds-data-cache');
+const cached = await cache.match('meds');
+if (cached) { const data = await cached.json(); meds = data.meds || []; takenToday = data.takenToday || {}; }
+} catch(e) {}
 }
 
 const agora = new Date();
@@ -137,16 +133,8 @@ if (!alreadyNotified) {
 
 async function agendarTodosAlarmes() {
 if (!('alarms' in self)) {
-console.log('⏰ Alarm API não suportada');
 if ('periodicSync' in self.registration) {
-try {
-await self.registration.periodicSync.register('medication-periodic', {
- minInterval: 15 * 60 * 1000
-});
-console.log('✅ Sincronização periódica registrada');
-} catch (e) {
-console.log('Periodic sync não disponível');
-}
+try { await self.registration.periodicSync.register('medication-periodic', { minInterval: 15 * 60 * 1000 }); } catch (e) {}
 }
 return;
 }
@@ -161,11 +149,16 @@ channel.port1.onmessage = e => resolve(e.data);
 client.postMessage({ type: 'GET_MEDS_DATA' }, [channel.port2]);
 setTimeout(() => resolve(null), 500);
 });
-if (response) {
-meds = response.meds || [];
-break;
-}
+if (response) { meds = response.meds || []; break; }
 } catch (err) {}
+}
+
+if (!meds.length) {
+try {
+const cache = await caches.open('meds-data-cache');
+const cached = await cache.match('meds');
+if (cached) { const data = await cached.json(); meds = data.meds || []; }
+} catch(e) {}
 }
 
 const existingAlarms = await self.alarms.getAll();

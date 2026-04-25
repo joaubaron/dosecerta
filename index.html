@@ -301,7 +301,17 @@ function renderMeds() {
     list.innerHTML = '<div class="empty"><div>💊</div><h3>Nenhum remédio ainda</h3><p>Toque em "Adicionar" para cadastrar seu primeiro remédio e configurar os horários.</p></div>';
     return;
   }
-  list.innerHTML = meds.map(med => {
+
+  function sortKey(med) {
+    const times = (med.times || []);
+    const pending = times.filter(t => !takenToday[`${med.id}_${t}`]);
+    if (!pending.length) return '99:99'; // tudo tomado vai pro final
+    return pending[0]; // menor horário ainda pendente
+  }
+
+  const sorted = [...meds].sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
+
+  list.innerHTML = sorted.map(med => {
     const allTaken = (med.times || []).length > 0 && (med.times || []).every(t => takenToday[`${med.id}_${t}`]);
     const timesHtml = (med.times || []).map(t => `<div class="time-chip${takenToday[`${med.id}_${t}`] ? ' taken' : ''}"><span class="chip-dot ok"></span>${fmtHora(t)}</div>`).join('');
     const notesHtml = med.notes ? `<span style="font-size:13px;color:var(--text2);margin-left:8px;align-self:center">${esc(med.notes)}</span>` : '';
